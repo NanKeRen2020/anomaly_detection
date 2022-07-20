@@ -1,4 +1,4 @@
-% Reducing Anomaly Detection in Images to Detection in Noise.
+Reducing Anomaly Detection in Images to Detection in Noise.
 
 # ABOUT
 ==========
@@ -13,6 +13,10 @@ This source code provides an implementation of the anomaly detection method deve
 
 
 [1], which has been studied in details in http://www.ipol.im
+
+result image
+![image](.png)
+
 
 # UNIX/LINUX/MAC USER GUIDE
 ==========
