@@ -15,7 +15,7 @@ This source code provides an implementation of the anomaly detection method deve
 [1], which has been studied in details in http://www.ipol.im
 
 result image
-![image](./detections.png)
+![image](https://github.com/NanKeRen2020/anomaly_detection/blob/f6f5d9fde1d9e7e685ade1fd2331e3cda2287cfa/detections.png)
 
 
 # UNIX/LINUX/MAC USER GUIDE
