@@ -285,6 +285,25 @@ cv::Mat get_nn_output(const cv::Mat& image, const std::string& proto_path, const
               << ", " << image.size[3] << ", " << image.depth() << std::endl;
     //cv::normalize(image, image, 1, 0);
     //image.convertTo(image, CV_16SC3);
+    std::ifstream proto_file(proto_path);
+    std::string str;
+    std::vector<std::string> strs;
+    while (std::getline(proto_file, str))
+    {
+        strs.push_back(str);
+    }
+    std::cout << "proto file: " << strs.size() << ", " << strs[3] << ", "
+              << strs[4] << ", " << strs[5] << std::endl;
+    strs[3] = "input_dim: " + std::to_string(image.channels());
+    strs[4] = "input_dim: " + std::to_string(image.cols);
+    strs[5] = "input_dim: " + std::to_string(image.rows);
+    std::ofstream out_proto_file(proto_path);
+    for (auto str: strs)
+    {
+        out_proto_file << str << std::endl;
+    }
+    out_proto_file.close();
+
     cv::dnn::Net net = cv::dnn::readNetFromCaffe(proto_path, model_path);
     net.setPreferableBackend(0);
     net.setPreferableTarget(0);
@@ -355,32 +374,32 @@ int main(int argc, char **argv)
 	//! Model parameters
 	const int patch_size  = 8;
 	const int num_patches  = 16;
-    //int layer_num = atoi(argv[4]);
+    int layer_num = atoi(argv[4]);
 
 
 	cv::Mat image = cv::imread(argv[1]);
-    cv::Mat image_gau;
-    int width, height;
+    cv::Mat image_gau, scale_image, reshape_result;
+    int width, height, row, component;
+    
     for (int n = 0; n < 4; ++n)
     {
-        width = image.cols;
-        height = image.rows;
-        if (image.cols % 2 == 1)   width = image.cols - 1;
-        if (image.rows % 2 == 1)   height = image.rows - 1;
-        image = image(cv::Rect(0, 0, width, height));
-        cv::GaussianBlur(image, image_gau, cv::Size(5, 5), 1.39, 1.39);
-        cv::pyrDown(image_gau, image);
+        if (image.cols < 150 || image.rows < 150) continue;        
+        if (layer_num < 0)
+        {
+            row = image.rows;
+            std::vector<cv::Mat> channels;
+            cv::split(image, channels);
+            scale_image = formatImagesForPCA(channels);  
+        }
+        else
+        {
+	        scale_image = get_nn_output(image, argv[5], argv[6], layer_num, row);
 
-        cv::Mat reshape_result;
-
-    int row = image_gau.rows;
-    std::vector<cv::Mat> channels;
-    cv::split(image_gau, channels);
-    cv::Mat nn_output = formatImagesForPCA(channels);  
+        }
 
 
-    int component = std::min(5, nn_output.size[0]/2);  
-    cv::Mat pca_proj = get_pca_componet(nn_output, row, component, reshape_result);
+    component = std::min(5, scale_image.size[0]/2);  
+    cv::Mat pca_proj = get_pca_componet(scale_image, row, component, reshape_result);
     std::cout << "pca_proj info: " << reshape_result.size() << ", " << reshape_result.channels() << ", " 
             << reshape_result.size[0] << ", " << reshape_result.size[1] << ", " << reshape_result.size[2] << ", " 
             << reshape_result.size[3] << std::endl;  
@@ -468,6 +487,8 @@ int main(int argc, char **argv)
 	saveImage(pixelNFA_image.c_str(), pixelNFA, nfaSize);
 	saveImage(radiusNFA_image.c_str(), radiusNFA, nfaSize);
 
+        cv::GaussianBlur(image, image_gau, cv::Size(5, 5), 1.39, 1.39);
+        cv::pyrDown(image_gau, image);
     }
     
 

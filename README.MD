@@ -24,7 +24,7 @@ result image
 The code is compilable on Unix/Linux. 
 
 - Compilation. 
-Automated compilation requires the cmake and make programs.
+Automated compilation requires the cmake and make programs, gcc/g++7.5 and OpenCV3.4.
 
 - Library. 
 This code requires the libpng, libtiff, libjpeg and fftw3 library. 
@@ -53,11 +53,10 @@ parallelization enabled (if your system supports it).
 The number of threads used by the code is defined in model/model.cpp.
 
 3. Usage instruction:
-Running " ./main_anomaly_detection src1.png pixelNFA_ pixelNFA_ " 
+Running " ./main_anomaly_detection src1.png pixelNFA_ pixelNFA_ deploy.prototxt VGG_normalised.caffemodel 3" 
 
-computes the result using the method and parameters from [1]
+computes the result using the method and parameters from [1], the caffe model file can download from [2].
 
-The program "main" correspond to the core of the method.
 
 4. The "python visu.py src1.png 0 4 ./ pixelNFA_ radiusNFA_ detections.pdf -2 " 
 
@@ -77,40 +76,6 @@ and orange to an extremely salient detection (NFA smaller than $8\times 10^{-21}
 
 Red corresponds to the detection with lowest NFA..
 
-5. This project contains the following source files:
-	src/CMakeLists.txt
-	src/main.cpp
-	src/Utilities/iio.h
-	src/Utilities/iio.c
-	src/Utilities/freemem.c
-	src/Utilities/LibImages.h
-	src/Utilities/LibImages.cpp
-	src/Utilities/cmd_option.h
-	src/Utilities/comparators.h
-	src/Utilities/decompose.py
-	src/Utilities/convert_laplacian_to_gaussian.py
-	src/Utilities/mt19937ar.h
-	src/Utilities/mt19937ar.c
-	src/Utilities/nfa.h
-	src/Utilities/nfa.cpp
-	src/Utilities/visu.py
-	src/Utilities/PartitionTree/forestManager.h
-	src/Utilities/PartitionTree/forestManager.cpp
-	src/Utilities/PartitionTree/partitionTree.h
-	src/Utilities/PartitionTree/prmTree.h
-	src/Utilities/PartitionTree/vptree.h
-	src/Utilities/PartitionTree/vptree.cpp
-	src/Utilities/PatchManager/databasePatchManager.h
-	src/Utilities/PatchManager/databasePatchManager.cpp
-	src/Utilities/PatchManager/imagePatchManager.h
-	src/Utilities/PatchManager/imagePatchManager.cpp
-	src/Utilities/PatchManager/patchManager.h
-	src/Utilities/PatchSearch/localPatchPropagation.h
-	src/Utilities/PatchSearch/localRefinement.h
-	src/Utilities/PatchSearch/localRefinement.cpp
-    src/model/params.h
-    src/model/model.h
-    src/model/model.cpp
 
 
 
