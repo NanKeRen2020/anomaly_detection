@@ -1,13 +1,11 @@
 Reducing Anomaly Detection in Images to Detection in Noise.
 
 # ABOUT
-==========
 
 * Author    : shengqiang8814@qq.com
 * Licence   : GPL v3+, see gpl.txt
 
 # OVERVIEW
-==========
 
 This source code provides an implementation of the anomaly detection method developped in 
 
@@ -19,7 +17,6 @@ detection result image
 
 
 # UNIX/LINUX/MAC USER GUIDE
-==========
 
 The code is compilable on Unix/Linux. 
 
@@ -31,8 +28,7 @@ This code requires the libpng, libtiff, libjpeg and fftw3 library.
 
 The visualization tool also requires the python cairo library. The scipy python library is also needed.
 
- 
--------------------------------------------------------------------------
+
 Usage:
 ==========
 
