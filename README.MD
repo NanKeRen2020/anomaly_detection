@@ -79,8 +79,7 @@ Red corresponds to the detection with lowest NFA..
 References
 ==========
 
-[1] "Davy, Axel, et al. "Reducing Anomaly Detection in Images to Detection in Noise." 
-
-    2018 25th IEEE International Conference on Image Processing (ICIP). IEEE, 2018.", 
+[1] Davy, Axel, et al. Reducing Anomaly Detection in Images to Detection in Noise. 
+    IEEE International Conference on Image Processing, 2018.
 
 [2] http://www.ipol.im/.
