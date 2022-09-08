@@ -1,18 +1,18 @@
 Reducing Anomaly Detection in Images to Detection in Noise.
 
 
-# OVERVIEW
+# Overview
 
 This source code provides an implementation of the anomaly detection method developped in 
 
 
-[1], which has been studied in details in http://www.ipol.im
+[1], which has been studied in details in [2].
 
 detection result image
 ![image](https://github.com/NanKeRen2020/anomaly_detection/blob/main/detections.png)
 
 
-# UNIX/LINUX USER GUIDE
+# Linux User Guide
 
 The code is compilable on Unix/Linux. 
 
