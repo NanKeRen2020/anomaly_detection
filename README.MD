@@ -1,9 +1,5 @@
 Reducing Anomaly Detection in Images to Detection in Noise.
 
-# ABOUT
-
-* Author    : shengqiang8814@qq.com
-* Licence   : GPL v3+, see gpl.txt
 
 # OVERVIEW
 
@@ -16,7 +12,7 @@ detection result image
 ![image](https://github.com/NanKeRen2020/anomaly_detection/blob/main/detections.png)
 
 
-# UNIX/LINUX/MAC USER GUIDE
+# UNIX/LINUX USER GUIDE
 
 The code is compilable on Unix/Linux. 
 
